@@ -1,0 +1,129 @@
+Chrome Extension Development Prompt: AI Chat Navigator
+Overview
+Create a Chrome extension called "AI Chat Navigator" that helps users navigate through long conversations in AI chat applications (ChatGPT, Claude, GrokAI, Bard, and Perplexity). The extension should extract user inputs from the conversation and display them in a collapsible sidebar for easy navigation.
+Core Features
+
+A collapsible sidebar that can be toggled via an extension icon and keyboard shortcut (Alt+N)
+Display of user inputs with timestamps and preview text (first 10-15 words)
+Ability to click on any input to scroll to that location in the chat
+Search functionality to filter inputs by text content
+Bookmarking capability for important inputs
+Basic export functionality for selected inputs
+
+Technical Requirements
+Manifest and Structure
+
+Use Manifest V3
+Extension should be lightweight and performant
+Include appropriate permissions for accessing content on the target sites only
+
+Target Platforms Support
+
+Implement platform detection and platform-specific content extraction for:
+
+ChatGPT (chat.openai.com)
+Claude (claude.ai)
+GrokAI (grok.x.ai)
+Google Bard/Gemini (gemini.google.com)
+Perplexity (perplexity.ai)
+
+
+Create an extensible framework that allows for adding more platforms with minimal code changes
+
+UI Components
+
+Sidebar Container:
+
+Collapsible panel (300px width when expanded)
+Fixed position on the right side of the screen
+Smooth animation for expand/collapse
+Semi-transparent background with light/dark mode support
+
+
+Input Item Display:
+
+Timestamp in compact format (HH:MM or MM/DD based on age)
+First 10-15 words of input with ellipsis
+Expandable to show full content
+Visual indicator for bookmarked items
+Hover state with highlight and "scroll to" icon
+
+
+Control Panel:
+
+Search input field at the top
+Clear search button
+Export selected/all/bookmarked button
+Toggle for auto-collapsing when an item is clicked
+
+
+
+Functionality Implementation
+
+Content Extraction Logic:
+
+Identify and extract user inputs from the DOM for each supported platform
+Store input text, timestamp, and DOM reference for scrolling
+Handle dynamic content loading (observe DOM changes)
+Distinguish between user and AI responses
+
+
+Navigation System:
+
+Implement smooth scrolling to selected input
+Highlight the selected input temporarily in the chat interface
+Ensure the input is centered in the viewport when navigated to
+
+
+Bookmarking System:
+
+Toggle bookmark status with a single click
+Persist bookmarks in local storage by conversation ID
+Option to filter view to show only bookmarked inputs
+
+
+Search Implementation:
+
+Case-insensitive text search
+Real-time filtering as user types
+Clear visual indication of matched vs. filtered-out items
+
+
+Export Functionality:
+
+Export options: All inputs, Bookmarked inputs, Selected inputs
+Format options: Plain text, Markdown, JSON
+Copy to clipboard or download as file
+
+
+
+Styling and UX
+
+Clean, minimal design that works well in both light and dark environments
+Use subtle animations for improved user experience
+Consistent iconography following Material Design principles
+Responsive design that adapts to window size changes
+Non-intrusive presence that doesn't interfere with the chat interface
+
+Performance Considerations
+
+Throttle DOM operations for smooth performance
+Efficiently handle large conversations (100+ exchanges)
+Minimize memory usage by avoiding unnecessary data duplication
+Use efficient selectors for DOM manipulation
+Implement pagination if the number of inputs exceeds a threshold (e.g., 50)
+
+Code Structure Guidelines
+
+Use modern JavaScript (ES6+) with clear organization
+Separate concerns: DOM manipulation, state management, UI rendering
+Implement a plugin architecture for platform-specific adapters
+Use event delegation for efficiently handling UI interactions
+Include comprehensive error handling and fallbacks
+
+Testing Requirements
+
+Test on all supported platforms in various conversation states
+Verify behavior with different themes/display settings
+Ensure compatibility with other common extensions
+Test with different conversation lengths and content types

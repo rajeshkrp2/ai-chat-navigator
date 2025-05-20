@@ -1,0 +1,6 @@
+Icons should be added here in the following sizes:
+- icon16.png (16x16)
+- icon48.png (48x48)
+- icon128.png (128x128)
+
+These can be created using any image editor or icon generator. 
